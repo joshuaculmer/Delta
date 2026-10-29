@@ -1,0 +1,24 @@
+[run]
+budget_tokens = 2_000_000
+reasoning_effort = "high"
+
+# Files left in the workspace carry to the next stage.
+# With memory off, files matching memory_strip are deleted at each stage boundary.
+memory = true
+memory_strip = ["**/*.md", "**/*.markdown", "**/notes/**", "**/plans/**"]
+
+[spend]
+# Delta refuses a stage if ledger total + that stage's worst case would exceed this.
+max_total_spend_usd = 25.0
+
+# Worst case assumes no cache hits and this share of tokens as output.
+worst_case_output_share = 0.1
+
+[sandbox]
+image = "delta-sandbox:dev"
+allow_hosts = ["api.openai.com"]
+
+[rate_limit]
+initial_backoff_s = 60
+max_backoff_s = 900
+max_pauses = 30
